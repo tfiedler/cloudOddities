@@ -1,0 +1,48 @@
+<! DOCTYPE html>
+<html>
+<head>
+<title></title>
+
+<link rel="stylesheet" title="all the goo, and more." href="camel.css" media="screen">
+
+</head>
+<body>
+
+<center>
+<b>
+Published CVE advisories - past {{ delta }} days
+<br>
+<font size="-1" color="red" ><i>* This page is updated every 2 hours *</i></font>
+<b>
+
+<table>
+
+{% for i in cve | sort(attribute='released') %}
+
+<a name="{{i.CVE}}"></a>
+<tr class='topdata'>
+<td>{{i.CVE}}</td>
+</tr>
+
+<tr class='middata'>
+<td>
+<pre>{{i.summary}}</pre>
+</tr>
+
+<tr class='bottomdata'>
+<td>
+Released: {{i.released}}
+<br>Modified: {{i.modified}}
+<br>Score: {{i.score}}
+<br>Reference: <a href="{{i.reference}}">{{i.reference}}</a>
+</td>
+</tr>
+
+{% endfor %}
+
+</table>
+<br>
+
+</center>
+</body>
+</html>
